@@ -44,26 +44,132 @@ class Program
         Console.WriteLine(SalaireNet(SalaireBrut(salairebrut), taxe));
         */
         //Consigne 3 :
-        Console.WriteLine("Rentrez un salaire brut annuel : ");
-        string salaireBrutInputAnnuelStr = Console.ReadLine();
-        int salaireBrutAnnuelInput;
 
-        if (!int.TryParse(salaireBrutInputAnnuelStr, out salaireBrutAnnuelInput))
+        User user = new User(1, "", "", 0, 0, 0);
+        Console.WriteLine("Bonjour, quel est votre nom ?");
+        string nom = Console.ReadLine();
+        user.lastname = nom;
+
+        Console.WriteLine("Quel est votre prénom ?");
+        string prenom = Console.ReadLine();
+        user.firstname = prenom;
+
+        Console.WriteLine("Quel est votre âge ?");
+        string age = Console.ReadLine();
+        int ageint;
+        if (!int.TryParse(age, out ageint))
         {
-            Console.WriteLine("Le salaire brut doit être un nombre entier.");
+            Console.WriteLine("L'âge doit être un nombre entier.");
             return; // Sortie du programme ou traitement de l'erreur selon vos besoins
         }
+        user.old = ageint;
 
-        Console.WriteLine("Rentrez un taux d'imposition : ");
-        string taxeinputstr = Console.ReadLine();
-        int taxeinput;
-        if (!int.TryParse(taxeinputstr, out taxeinput))
+
+        Console.WriteLine("Bonjour Faites un choix \n 1. Calculer son salaire mensuel net \n 2. Calculer ses intérêts composés.");
+        string choix = Console.ReadLine();
+        switch (choix)
         {
-            Console.WriteLine("Le taux d'imposition doit être un nombre entier.");
-            return; // Sortie du programme ou traitement de l'erreur selon vos besoins
-        }
+            case "1":
+                Console.WriteLine("Vous avez choisi de calculer votre salaire mensuel net");
+                Console.WriteLine("Rentrez un salaire brut annuel : ");
+                string salaireBrutInputAnnuelStr = Console.ReadLine();
+                int salaireBrutAnnuelInput;
 
-        int resultat = SalaireNet(SalaireBrut(salaireBrutAnnuelInput), taxeinput);
+                if (!int.TryParse(salaireBrutInputAnnuelStr, out salaireBrutAnnuelInput))
+                {
+                    Console.WriteLine("Le salaire brut doit être un nombre entier.");
+                    return; // Sortie du programme ou traitement de l'erreur selon vos besoins
+                }
+
+                Console.WriteLine("Rentrez un taux d'imposition : ");
+                string taxeinputstr = Console.ReadLine();
+                int taxeinput;
+                if (!int.TryParse(taxeinputstr, out taxeinput))
+                {
+                    Console.WriteLine("Le taux d'imposition doit être un nombre entier.");
+                    return; // Sortie du programme ou traitement de l'erreur selon vos besoins
+                }
+
+                user.salary = salaireBrutAnnuelInput;
+                user.taxe = taxeinput;
+
+                int resultat = SalaireNet(SalaireBrut(salaireBrutAnnuelInput), taxeinput);
+                string[] mois = new string[12] { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
+
+                for (int i = 0; i < mois.Length; i++)
+                {
+                    if (i == 11)
+                    {
+                        try {
+                            Console.WriteLine("Vous avez eu une prime de combien de pourcent la voulez vous ? (brut annuel)");
+                            string percentage = Console.ReadLine();
+                            double coeffPrime = 1 - (Convert.ToDouble(percentage) / 100);
+                            int prime = Convert.ToInt32(salaireBrutAnnuelInput - (salaireBrutAnnuelInput * coeffPrime));
+                            Console.WriteLine(prime);
+                            int newSalaire = resultat + prime;
+                            int coeffinutilepourexception = 100 / Convert.ToInt32(percentage);
+                            Console.WriteLine("Vous avez reçu une prime de " + prime +" , votre salaire de décembre est de : " + newSalaire);
+                            user.display();
+                            //int prime = salaireBrutAnnuelInput/10;
+                        }
+                        catch (FormatException e)
+                        {
+                            Console.WriteLine("Merci de mettre un nombre entier");
+                            //Console.WriteLine("Erreur : " + e.Message);
+                        }
+                        catch (DivideByZeroException e)
+                        {
+                            Console.WriteLine("Merci de ne pas mettre 0");
+                            //Console.WriteLine("Erreur : " + e.Message);
+                        }
+                    }
+                    else if (i == 7)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Votre salaire de " + mois[i] + " est : " + resultat);
+                    }
+
+                }
+                break;
+            case "2":
+                Console.WriteLine("Vous avez choisi de calculer vos intérêts composés");
+                Console.WriteLine("Rentrez un montant initial : ");
+                string montantInitialStr = Console.ReadLine();
+                int montantInitial;
+                if (!int.TryParse(montantInitialStr, out montantInitial))
+                {
+                    Console.WriteLine("Le montant initial doit être un nombre entier.");
+                    return; // Sortie du programme ou traitement de l'erreur selon vos besoins
+                }
+
+                Console.WriteLine("A quel taux d'intérêt ? ");
+                string tauxInteretStr = Console.ReadLine();
+                int tauxInteret;
+                if (!int.TryParse(tauxInteretStr, out tauxInteret))
+                {
+                    Console.WriteLine("Le taux d'intérêt doit être un nombre entier.");
+                    return; // Sortie du programme ou traitement de l'erreur selon vos besoins
+                }
+
+                Console.WriteLine("Sur combien d'années ? ");
+                string anneesStr = Console.ReadLine();
+                int annees;
+                if (!int.TryParse(anneesStr, out annees))
+                {
+                    Console.WriteLine("Le nombre d'années doit être un nombre entier.");
+                    return; // Sortie du programme ou traitement de l'erreur selon vos besoins
+                }
+
+                
+                //User user2 = new User(2, "Jean", "Dupont", 25, 30000, 10);
+                //Console.WriteLine("User 2 : " + user2.firstname + " Nom : " + user2.lastname + " Age : " + user2.old + " salary : " + user2.salary + " taxe : " + user2.taxe);
+                break;
+            default:
+                break;
+        }
         /*
         if (salaireBrutAnnuelInput >= 50000) {
             Console.WriteLine("Fais des dons stp");
@@ -83,30 +189,5 @@ class Program
         }
         */
 
-        string[] mois = new string[12] { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
-        
-        for(int i = 0; i < mois.Length; i++)
-        {
-            if (i == 11)
-            {
-                Console.WriteLine("Vous avez eu une prime de combien de pourcent la voulez vous ? (brut annuel)");
-                string percentage = Console.ReadLine();
-                double coeffPrime = 1 - (Convert.ToDouble(percentage) / 100);
-                int prime = Convert.ToInt32(salaireBrutAnnuelInput - (salaireBrutAnnuelInput * coeffPrime));
-                Console.WriteLine(prime);
-                int newSalaire = resultat + prime;
-                Console.WriteLine("Vous avez reçu une prime votre salaire de décembre est de : " + newSalaire);
-                //int prime = salaireBrutAnnuelInput/10;
-            }
-            else if (i == 7)
-            {
-                continue;
-            }
-            else
-            {
-                Console.WriteLine("Votre salaire de " + mois[i] + " est : " + resultat);
-            }
-            
-        }
     }
 }
