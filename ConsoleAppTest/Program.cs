@@ -32,7 +32,7 @@
 
         Square(num1, num2);
         Console.WriteLine("Press enter to Exit...");
-        Console.ReadLine();*/
+        Console.ReadLine();
         // Consigne 1 :
         Console.WriteLine(SalaireBrut(30000));
         int salairebrut = int.Parse(args[0]);
@@ -40,7 +40,7 @@
 
         //Consigne 2 :
         Console.WriteLine(SalaireNet(SalaireBrut(salairebrut), taxe));
-
+        */
         //Consigne 3 :
         Console.WriteLine("Rentrez un salaire brut annuel : ");
         string salaireBrutInputAnnuelStr = Console.ReadLine();
@@ -62,6 +62,7 @@
         }
 
         int resultat = SalaireNet(SalaireBrut(salaireBrutAnnuelInput), taxeinput);
+        /*
         if (salaireBrutAnnuelInput >= 50000) {
             Console.WriteLine("Fais des dons stp");
         }
@@ -78,7 +79,27 @@
         {
             Console.WriteLine("Votre Salaire net mensuel est : " + resultat);
         }
+        */
 
-
+        string[] mois = new string[12] { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
+        
+        for(int i = 0; i < mois.Length; i++)
+        {
+            if (i == 11)
+            {
+                int prime = salaireBrutAnnuelInput/10;
+                int newSalaire = resultat + prime;
+                Console.WriteLine("Vous avez reçu une prime votre salaire de décembre est de : " + newSalaire);
+            }
+            else if (i == 7)
+            {
+                continue;
+            }
+            else
+            {
+                Console.WriteLine("Votre salaire de " + mois[i] + " est : " + resultat);
+            }
+            
+        }
     }
 }
