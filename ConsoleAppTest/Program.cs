@@ -1,4 +1,6 @@
-﻿class Program
+﻿using System.Linq.Expressions;
+
+class Program
 { 
     static void Square(int a , int b)
     { 
@@ -87,9 +89,14 @@
         {
             if (i == 11)
             {
-                int prime = salaireBrutAnnuelInput/10;
+                Console.WriteLine("Vous avez eu une prime de combien de pourcent la voulez vous ? (brut annuel)");
+                string percentage = Console.ReadLine();
+                double coeffPrime = 1 - (Convert.ToDouble(percentage) / 100);
+                int prime = Convert.ToInt32(salaireBrutAnnuelInput - (salaireBrutAnnuelInput * coeffPrime));
+                Console.WriteLine(prime);
                 int newSalaire = resultat + prime;
                 Console.WriteLine("Vous avez reçu une prime votre salaire de décembre est de : " + newSalaire);
+                //int prime = salaireBrutAnnuelInput/10;
             }
             else if (i == 7)
             {
