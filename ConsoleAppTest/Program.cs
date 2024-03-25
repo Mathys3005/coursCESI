@@ -62,6 +62,16 @@ class Program
             Console.WriteLine("L'âge doit être un nombre entier.");
             return; // Sortie du programme ou traitement de l'erreur selon vos besoins
         }
+        else if (ageint < 0)
+        {
+            Console.WriteLine("L'âge doit être un nombre positif.");
+            return; // Sortie du programme ou traitement de l'erreur selon vos besoins
+        }
+        else if (ageint < 18)
+        {
+            Console.WriteLine("Vous êtes mineur.");
+            return; // Sortie du programme ou traitement de l'erreur selon vos besoins
+        }
         user.old = ageint;
 
 
@@ -136,7 +146,7 @@ class Program
                 break;
             case "2":
                 Console.WriteLine("Vous avez choisi de calculer vos intérêts composés");
-                Console.WriteLine("Rentrez un montant initial : ");
+                Console.WriteLine("Rentrez un capital initial : ");
                 string montantInitialStr = Console.ReadLine();
                 int montantInitial;
                 if (!int.TryParse(montantInitialStr, out montantInitial))
@@ -163,6 +173,11 @@ class Program
                     return; // Sortie du programme ou traitement de l'erreur selon vos besoins
                 }
 
+                for (int i = 0; i < annees; i++)
+                {
+                    montantInitial = montantInitial + (montantInitial * tauxInteret / 100);
+                    Console.WriteLine("Votre capital après " + (i + 1) + " année est de : " + montantInitial);
+                }
                 
                 //User user2 = new User(2, "Jean", "Dupont", 25, 30000, 10);
                 //Console.WriteLine("User 2 : " + user2.firstname + " Nom : " + user2.lastname + " Age : " + user2.old + " salary : " + user2.salary + " taxe : " + user2.taxe);
