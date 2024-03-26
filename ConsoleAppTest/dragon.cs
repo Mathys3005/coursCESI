@@ -6,6 +6,12 @@ public class Dragon : Animal, IPilotage
     {
         this.Name = "dragon";
     }
+    public Dragon(string name, string rarity)
+    {
+        this.Name = name;
+        this.Rarity = "rare";
+    }
+
     public Dragon(string name)
     {
         this.Name = name;

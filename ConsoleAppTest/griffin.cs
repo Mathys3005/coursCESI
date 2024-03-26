@@ -8,11 +8,16 @@ public class Griffin : Animal
 {
     Griffin()
     {
-        Name = "griffin";
+        this.Name = "griffin";
+    }
+    public Griffin(string name, string rarity)
+    {
+        this.Name = name;
+        this.Rarity = rarity;
     }
     public Griffin(string name)
     {
-        Name = name;
+        this.Name = name;
     }
     public override void move()
     {
