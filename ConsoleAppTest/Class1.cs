@@ -1,8 +1,5 @@
 ﻿using System;
 
-/// <summary>
-/// Summary description for Class1
-/// </summary>
 public class User
 {
     public int id { get; set; }
@@ -25,7 +22,6 @@ public class User
     }
     public void display()
     {
-        //ecrit de maniere esthetique
         Console.WriteLine("Id : " + id + " " + "Nom : " + lastname + " " + "Prénom : " + firstname + " " + "Age : " + old + " " + "Salaire : " + salary + " " + "Taxe : " + taxe);
     }
 }
