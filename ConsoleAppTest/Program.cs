@@ -16,7 +16,7 @@ class Program
         dragon.sleep();
         griffin.move();
         griffin.sleep();
-        dragon.moove();
+        dragon.moove(); 
 
     }
 }
