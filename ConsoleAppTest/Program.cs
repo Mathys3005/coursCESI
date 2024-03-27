@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Data.SqlClient;
 class Program
 {
     static void Main(string[] args)
@@ -34,5 +34,14 @@ class Program
         {
             Console.WriteLine(common.Name);
         }
+
+        Eagle eagle = new Eagle("Aigle Royal","Rare");
+        Bird bird = new Bird("Woody");
+        bird.sleep();
+        bird.move();
+        eagle.sleep();
+        eagle.move();
+        eagle.Fly();
+        bird.Fly();
     }
 }
