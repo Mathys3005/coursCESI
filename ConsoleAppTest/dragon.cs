@@ -9,7 +9,7 @@ public class Dragon : Animal, IPilotage
     public Dragon(string name, string rarity)
     {
         this.Name = name;
-        this.Rarity = "rare";
+        this.Rarity = rarity;
     }
 
     public Dragon(string name)

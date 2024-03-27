@@ -6,7 +6,7 @@ using System.Globalization;
 /// </summary>
 public abstract class Animal
 {
-	public string Name { get; protected set; }
+	public string Name { get; /*protected*/ set; }
 	public string Rarity { get; set; }
 	public virtual void move(){}
 
