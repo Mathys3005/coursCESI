@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Dragon : Animal, IPilotage
+public class Dragon : Animal, IPilotage, IFly
 {
     Dragon()
     {
@@ -27,5 +27,10 @@ public class Dragon : Animal, IPilotage
     public override void sleep()
     {
         Console.WriteLine(this.Name + " le dragon dort");
+    }
+
+    public void Fly()
+    {
+        Console.WriteLine(this.Name + " le dragon vole");
     }
 }
